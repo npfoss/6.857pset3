@@ -7,6 +7,7 @@ doctests in main(). To run verbose doctests, run with `python prime-gen.py -v`.
 """
 
 from __future__ import print_function
+from math import sqrt
 from random import randint, randrange
 
 
@@ -86,8 +87,7 @@ def gen_safe_prime_generator(p):
     >>> p = gen_safe_prime(10)
     >>> g = gen_safe_prime_generator(p)
     """
-
-    raise NotImplementedError
+    return powmod(randint(1, p), 2, p)
 
 
 def el_gamal_is_qr(p, g, gx, gy, gxy_m):
