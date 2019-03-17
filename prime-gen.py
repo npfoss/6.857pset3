@@ -7,7 +7,6 @@ doctests in main(). To run verbose doctests, run with `python prime-gen.py -v`.
 """
 
 from __future__ import print_function
-from math import sqrt
 from random import randint, randrange
 
 
