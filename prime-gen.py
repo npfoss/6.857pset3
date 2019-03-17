@@ -29,7 +29,7 @@ def powmod(a, b, m):
     return (a * powmod(a, b-1, m)) % m
 
 
-def is_prime(p, trials=3):
+def is_prime(p):
     """ Returns whether p is probably prime
 
     This should run enough iterations of the test to be reasonably confident
@@ -50,11 +50,8 @@ def is_prime(p, trials=3):
     if p % 2 == 0 or p % 3 == 0:
         return False
 
-    for t in range(trials):
-        a = randint(1, p-1)
-        if powmod(a, p-1, p) != 1:
-            return False
-    return True
+    a = 2
+    return powmod(a, p-1, p) == 1
 
 
 def gen_prime(b):
