@@ -22,7 +22,7 @@ def powmod(a, b, m):
         return 1
     elif b == 1:
         return a
-    if b % 2 == 0:
+    elif b % 2 == 0:
         n = powmod(a, b // 2, m)
         return n * n % m
     return (a * powmod(a, b-1, m)) % m
@@ -89,7 +89,7 @@ def gen_safe_prime_generator(p):
     q = (p-1)//2
     random_seed = randint(2, p-2)
     q_p = powmod(random_seed, 2, p)
-    while random_seed != q_p or powmod(q_p, q, p) != q_p:
+    while random_seed == q_p or powmod(q_p, q+1, p) != q_p:
         random_seed = randint(2, p-2)
         q_p = powmod(random_seed, 2, p)
     return q_p
