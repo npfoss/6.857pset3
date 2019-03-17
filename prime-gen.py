@@ -22,7 +22,7 @@ def powmod(a, b, m):
     raise NotImplementedError
 
 
-def is_prime(p):
+def is_prime(p, trials=10):
     """ Returns whether p is probably prime
 
     This should run enough iterations of the test to be reasonably confident
@@ -38,7 +38,11 @@ def is_prime(p):
     False
     """
 
-    raise NotImplementedError
+    for t in range(trials):
+        a = randint(1, p-1)
+        if powmod(a, p-1, p) != 1:
+            return False
+    return True
 
 
 def gen_prime(b):
