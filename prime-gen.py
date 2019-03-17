@@ -19,15 +19,12 @@ def powmod(a, b, m):
     652541198
     """
     if b == 0:
-        # case 1 b is 0
         return 1
-    if b == 1:
+    elif b == 1:
         return a
     if b % 2 == 0:
-        # case 2 b is even
         n = powmod(a, b // 2, m)
         return n * n % m
-    # case 3 b is odd
     return (a * powmod(a, b-1, m)) % m
 
 
@@ -48,8 +45,7 @@ def is_prime(p):
     """
     if p < 4:
         return True
-
-    if p % 2 == 0 or p % 3 == 0:
+    elif p % 2 == 0 or p % 3 == 0:
         return False
 
     a = 2
@@ -81,7 +77,6 @@ def gen_safe_prime(b):
     p = 4
     while not is_prime(2*p+1):
         p = gen_prime(b-1)
-
     return 2*p+1
 
 
@@ -91,7 +86,6 @@ def gen_safe_prime_generator(p):
     >>> p = gen_safe_prime(10)
     >>> g = gen_safe_prime_generator(p)
     """
-    # Fix this --> number^2 itself = bad, number^q=itself is good
     random_seed = randint(1, p)
     q_p = powmod(random_seed, 2, p)
     while random_seed != q_p and powmod(q_p, q_p, p) == q_p:
@@ -103,7 +97,6 @@ def gen_safe_prime_generator(p):
 def el_gamal_is_qr(p, g, gx, gy, gxy_m):
     """ Returns whether m is a quadratic residue, given an ElGamal ciphertext over Z_p^*
     """
-
     raise NotImplementedError
 
 
@@ -118,10 +111,10 @@ def main():
     print("Safe prime and generator:", p, g)
 
     bit = el_gamal_get_bit(261559759947351029532457942104910865303,
-        194286524128031642142474107184510601326,
-        198945838169134496994751864693096545284,
-        162960645829528127846175960244367199327,
-        181937067363429702065627884694752413851)
+                           194286524128031642142474107184510601326,
+                           198945838169134496994751864693096545284,
+                           162960645829528127846175960244367199327,
+                           181937067363429702065627884694752413851)
     print("ElGamal message bit:", bit)
 
 
