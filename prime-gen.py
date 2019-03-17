@@ -27,6 +27,7 @@ def powmod(a, b, m):
     # case 3 b is odd
     return (a * powmod(a, b-1, m)) % m
 
+
 def is_prime(p, trials=10):
     """ Returns whether p is probably prime
 
@@ -59,9 +60,9 @@ def gen_prime(b):
     >>> is_prime(p)
     True
     """
-    candidate = int("".join(str(randint(0, 1)) for _ in range(b)), 2)
+    candidate = randint(2**(b-1), (2**b)-1)
     while not is_prime(candidate):
-        candidate = int("".join(str(randint(0, 1)) for _ in range(b)), 2)
+        candidate = randint(2**(b-1), (2**b)-1)
     return candidate
 
 
