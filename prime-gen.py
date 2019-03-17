@@ -18,9 +18,14 @@ def powmod(a, b, m):
     >>> powmod(123456789, 987654321, 1000000007)
     652541198
     """
-
-    raise NotImplementedError
-
+    if b == 0:
+        # case 1 b is 0
+        return 1
+    if b % 2 == 0:
+        # case 2 b is even
+        return (pow(a, int(b/2)) * pow(a, int(b/2))) % m
+    # case 3 b is odd
+    return (a * pow(a, b-1)) % m
 
 def is_prime(p, trials=10):
     """ Returns whether p is probably prime
@@ -111,3 +116,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
