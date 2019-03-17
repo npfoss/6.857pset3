@@ -86,10 +86,11 @@ def gen_safe_prime_generator(p):
     >>> p = gen_safe_prime(10)
     >>> g = gen_safe_prime_generator(p)
     """
-    random_seed = randint(1, p)
+    q = (p-1)//2
+    random_seed = randint(2, p-2)
     q_p = powmod(random_seed, 2, p)
-    while random_seed != q_p and powmod(q_p, q_p, p) == q_p:
-        random_seed = randint(1, p)
+    while random_seed != q_p or powmod(q_p, q, p) != q_p:
+        random_seed = randint(2, p-2)
         q_p = powmod(random_seed, 2, p)
     return q_p
 
