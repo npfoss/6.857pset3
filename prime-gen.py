@@ -44,8 +44,6 @@ def is_prime(p, trials=10):
             return False
     return True
 
-    raise NotImplementedError
-
 
 def gen_prime(b):
     """ Returns a prime p with b bits
