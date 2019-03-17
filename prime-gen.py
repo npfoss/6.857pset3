@@ -21,14 +21,17 @@ def powmod(a, b, m):
     if b == 0:
         # case 1 b is 0
         return 1
+    if b == 1:
+        return a
     if b % 2 == 0:
         # case 2 b is even
-        return (powmod(a, b/2, m) ** 2 ) % m
+        n = powmod(a, b // 2, m)
+        return n * n % m
     # case 3 b is odd
     return (a * powmod(a, b-1, m)) % m
 
 
-def is_prime(p, trials=10):
+def is_prime(p):
     """ Returns whether p is probably prime
 
     This should run enough iterations of the test to be reasonably confident
@@ -43,12 +46,14 @@ def is_prime(p, trials=10):
     >>> is_prime(998244357)
     False
     """
+    if p < 4:
+        return True
 
-    for t in range(trials):
-        a = randint(1, p-1)
-        if powmod(a, p-1, p) != 1:
-            return False
-    return True
+    if p % 2 == 0 or p % 3 == 0:
+        return False
+
+    a = 2
+    return powmod(a, p-1, p) == 1
 
 
 def gen_prime(b):
@@ -60,9 +65,9 @@ def gen_prime(b):
     >>> is_prime(p)
     True
     """
-    candidate = randint(2**(b-1), (2**b)-1)
+    candidate = randint(1 << (b-1), (1 << b) - 1)
     while not is_prime(candidate):
-        candidate = randint(2**(b-1), (2**b)-1)
+        candidate = randint(1 << (b-1), (1 << b) - 1)
     return candidate
 
 
@@ -98,8 +103,6 @@ def el_gamal_is_qr(p, g, gx, gy, gxy_m):
 
 def main():
     import doctest
-    print(doctest.run_docstring_examples(powmod, globals()))
-    print('done')
     print(doctest.testmod(exclude_empty=True))
 
     print("Random prime:", gen_prime(128))
