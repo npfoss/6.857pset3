@@ -24,9 +24,9 @@ def powmod(a, b, m):
         return 1
     if b % 2 == 0:
         # case 2 b is even
-        return (pow(a, int(b/2)) * pow(a, int(b/2))) % m
+        return (powmod(a, b/2, m) ** 2 ) % m
     # case 3 b is odd
-    return (a * pow(a, b-1)) % m
+    return (a * powmod(a, b-1, m)) % m
 
 
 def is_prime(p, trials=10):
@@ -99,6 +99,8 @@ def el_gamal_is_qr(p, g, gx, gy, gxy_m):
 
 def main():
     import doctest
+    print(doctest.run_docstring_examples(powmod, globals()))
+    print('done')
     print(doctest.testmod(exclude_empty=True))
 
     print("Random prime:", gen_prime(128))
