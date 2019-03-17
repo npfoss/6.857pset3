@@ -22,9 +22,12 @@ def powmod(a, b, m):
     if b == 0:
         # case 1 b is 0
         return 1
+    if b == 1:
+        return a
     if b % 2 == 0:
         # case 2 b is even
-        return (powmod(a, b/2, m) ** 2 ) % m
+        n = powmod(a, b // 2, m)
+        return n * n % m
     # case 3 b is odd
     return (a * powmod(a, b-1, m)) % m
 
