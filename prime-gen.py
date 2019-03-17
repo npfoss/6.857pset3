@@ -92,7 +92,7 @@ def gen_safe_prime_generator(p):
     >>> g = gen_safe_prime_generator(p)
     """
     # Fix this --> number^2 itself = bad, number^q=itself is good
-    random_seed = randint(1, p)
+    random_seed = randint(2, p-1)
     q_p = powmod(random_seed, 2, p)
     while random_seed != q_p and powmod(q_p, q_p, p) == q_p:
         random_seed = randint(1, p)
