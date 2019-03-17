@@ -99,8 +99,6 @@ def el_gamal_is_qr(p, g, gx, gy, gxy_m):
 
 def main():
     import doctest
-    print(doctest.run_docstring_examples(powmod, globals()))
-    print('done')
     print(doctest.testmod(exclude_empty=True))
 
     print("Random prime:", gen_prime(128))
