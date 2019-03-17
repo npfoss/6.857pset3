@@ -65,8 +65,11 @@ def gen_safe_prime(b):
     >>> p.bit_length()
     10
     """
+    p = 4
+    while not is_prime(2*p+1):
+        p = gen_prime(b-1)
 
-    raise NotImplementedError
+    return 2*p+1
 
 
 def gen_safe_prime_generator(p):
