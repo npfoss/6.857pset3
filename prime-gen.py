@@ -91,7 +91,13 @@ def gen_safe_prime_generator(p):
     >>> p = gen_safe_prime(10)
     >>> g = gen_safe_prime_generator(p)
     """
-    return powmod(randint(1, p), 2, p)
+    # Fix this --> number^2 itself = bad, number^q=itself is good
+    random_seed = randint(1, p)
+    q_p = powmod(random_seed, 2, p)
+    while random_seed != q_p and powmod(q_p, q_p, p) == q_p:
+        random_seed = randint(1, p)
+        q_p = powmod(random_seed, 2, p)
+    return q_p
 
 
 def el_gamal_is_qr(p, g, gx, gy, gxy_m):
