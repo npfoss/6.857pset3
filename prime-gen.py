@@ -54,8 +54,10 @@ def gen_prime(b):
     >>> is_prime(p)
     True
     """
-
-    raise NotImplementedError
+    candidate = int("".join(str(randint(0, 1)) for _ in range(b)), 2)
+    while not is_prime(candidate):
+        candidate = int("".join(str(randint(0, 1)) for _ in range(b)), 2)
+    return candidate
 
 
 def gen_safe_prime(b):
